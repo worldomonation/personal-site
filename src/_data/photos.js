@@ -53,7 +53,7 @@ export default async function () {
             camera: formatCamera(data.Make, data.Model),
             lens: data.LensModel || data.Lens || "",
             focalLength: data.FocalLength ? `${Math.floor(data.FocalLength)}mm` : "",
-            aperture: data.FNumber ? `f/${data.FNumber}` : "",
+            aperture: data.FNumber ? `f/${parseFloat(data.FNumber.toFixed(2))}` : "",
             shutterSpeed: formatShutterSpeed(data.ExposureTime),
             iso: data.ISO || "",
             date: data.DateTimeOriginal || data.CreateDate || null,
