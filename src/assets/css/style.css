@@ -585,11 +585,9 @@ body.lightbox-open {
   text-decoration-color: var(--text);
 }
 
-.back-link {
-  text-align: center;
-}
+/* ---- Common Button Styles ---- */
 
-.back-button {
+.btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -601,16 +599,64 @@ body.lightbox-open {
   text-decoration: none;
   font-weight: 500;
   transition: all 0.2s ease;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
 }
 
-.back-button:hover {
+.btn:hover {
   background: #2a2a2a;
   border-color: #555;
 }
 
-.back-button:focus-visible {
+.btn:focus-visible {
   outline: 2px solid var(--text);
   outline-offset: 2px;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn:disabled:hover {
+  background: var(--bg-surface);
+  border-color: var(--border);
+}
+
+.btn-container {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.back-link {
+  text-align: center;
+}
+
+.back-button {
+  /* Use common button styles */
+}
+
+/* ---- Gallery Pagination ---- */
+
+.gallery-pagination {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 3rem auto 2rem;
+  max-width: var(--max-width);
+  padding: 0 1rem;
+}
+
+.load-more-container {
+  text-align: center;
+}
+
+.gallery-footer {
+  text-align: center;
+  border-top: 1px solid var(--border);
+  padding-top: 2rem;
 }
 
 /* ---- Linktree Responsive ---- */

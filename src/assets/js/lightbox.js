@@ -39,12 +39,61 @@
       photos = window.__PHOTOS__;
     }
 
+    bindGalleryItems();
+    initLoadMore();
+  }
+
+  function bindGalleryItems() {
     document.querySelectorAll(".gallery-item").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        var index = parseInt(btn.dataset.index, 10);
-        triggerElement = btn;
+      // Remove existing event listeners by cloning
+      var newBtn = btn.cloneNode(true);
+      btn.parentNode.replaceChild(newBtn, btn);
+      
+      newBtn.addEventListener("click", function () {
+        var index = parseInt(newBtn.dataset.index, 10);
+        triggerElement = newBtn;
         open(index);
       });
+    });
+  }
+
+  function initLoadMore() {
+    var loadMoreBtn = document.getElementById("load-more-btn");
+    if (!loadMoreBtn) return;
+
+    loadMoreBtn.addEventListener("click", function () {
+      var gallery = document.getElementById("gallery");
+      var currentCount = window.__CURRENT_LOADED__ || 8;
+      var photosPerPage = window.__PHOTOS_PER_PAGE__ || 8;
+      var totalPhotos = photos.length;
+      
+      var nextBatch = photos.slice(currentCount, currentCount + photosPerPage);
+      
+      nextBatch.forEach(function (photo, i) {
+        var button = document.createElement("button");
+        button.className = "gallery-item";
+        button.dataset.index = currentCount + i;
+        button.setAttribute("aria-label", "View " + photo.alt);
+        
+        var img = document.createElement("img");
+        img.src = photo.thumbSrc;
+        img.alt = photo.alt;
+        img.loading = "lazy";
+        img.decoding = "async";
+        
+        button.appendChild(img);
+        gallery.appendChild(button);
+      });
+      
+      window.__CURRENT_LOADED__ = currentCount + nextBatch.length;
+      
+      // Rebind event listeners for all gallery items
+      bindGalleryItems();
+      
+      // Hide load more button if all photos are loaded
+      if (window.__CURRENT_LOADED__ >= totalPhotos) {
+        loadMoreBtn.style.display = "none";
+      }
     });
   }
 
