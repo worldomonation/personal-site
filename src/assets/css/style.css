@@ -232,14 +232,14 @@ body {
   margin-top: 1rem;
   text-align: center;
   color: var(--text-muted);
-  font-size: 0.8125rem;
+  font-size: clamp(0.875rem, 2.3vw, 1.05rem);
   line-height: 1.7;
   max-width: 600px;
 }
 
 .lightbox-title {
   color: var(--text);
-  font-size: 1rem;
+  font-size: clamp(1.125rem, 3vw, 1.375rem);
   font-weight: 600;
 }
 
@@ -258,7 +258,7 @@ body {
 
 .lightbox-date {
   margin-top: 0.15rem;
-  font-size: 0.75rem;
+  font-size: clamp(0.8125rem, 2.1vw, 0.9375rem);
 }
 
 /* ---- Screen-reader only ---- */
@@ -703,6 +703,11 @@ body.lightbox-open {
 
   .lightbox-content {
     padding: 3rem 0.5rem 1rem;
+  }
+
+  .lightbox-exif {
+    max-width: 90vw;
+    margin-top: 1.25rem;
   }
 
   .site-header {
