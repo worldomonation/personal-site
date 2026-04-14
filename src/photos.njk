@@ -1,0 +1,24 @@
+---
+layout: base.njk
+title: Photos | Edwin Takahashi
+description: My photo gallery
+---
+
+{% if photos.length %}
+<section class="gallery" aria-label="Photo gallery">
+  {% for photo in photos %}
+  <button class="gallery-item" data-index="{{ loop.index0 }}" aria-label="View {{ photo.alt }}">
+    <img src="{{ photo.thumbSrc }}" alt="{{ photo.alt }}" loading="lazy" decoding="async">
+  </button>
+  {% endfor %}
+</section>
+
+<script>
+  window.__PHOTOS__ = {{ photos | toJson | safe }};
+</script>
+{% else %}
+<div class="gallery-empty">
+  <h2>No photos yet</h2>
+  <p>Add images to <code>src/photos/</code> and rebuild.</p>
+</div>
+{% endif %}

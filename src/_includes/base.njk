@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
-  <header class="site-header">
+  <header class="site-header{% if hideHeader %} hidden{% endif %}">
     <a href="/" class="site-title">{{ metadata.title }}</a>
     <p class="site-description">{{ metadata.description }}</p>
   </header>
