@@ -24,6 +24,8 @@ html {
   color: var(--text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Prevent double-tap zoom on interactive elements */
+  touch-action: manipulation;
 }
 
 body {
@@ -81,6 +83,7 @@ body {
   background: var(--bg-surface);
   display: block;
   position: relative;
+  touch-action: manipulation;
 }
 
 .gallery-item img {
@@ -603,6 +606,7 @@ body.lightbox-open {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
+  touch-action: manipulation;
 }
 
 .btn:hover {
