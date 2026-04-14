@@ -6,7 +6,7 @@ description: My photo gallery
 
 {% if photos.length %}
 <section class="gallery" aria-label="Photo gallery" id="gallery">
-  {% for photo in photos.slice(0, 8) %}
+  {% for photo in photos.slice(0, 12) %}
   <button class="gallery-item" data-index="{{ loop.index0 }}" aria-label="View {{ photo.alt }}">
     <img src="{{ photo.thumbSrc }}" alt="{{ photo.alt }}" loading="lazy" decoding="async">
   </button>
@@ -14,7 +14,7 @@ description: My photo gallery
 </section>
 
 <div class="gallery-pagination">
-  {% if photos.length > 8 %}
+  {% if photos.length > 12 %}
   <div class="load-more-container">
     <button id="load-more-btn" class="btn">Load More Photos</button>
   </div>
@@ -27,8 +27,8 @@ description: My photo gallery
 
 <script>
   window.__PHOTOS__ = {{ photos | toJson | safe }};
-  window.__PHOTOS_PER_PAGE__ = 8;
-  window.__CURRENT_LOADED__ = Math.min(8, {{ photos.length }});
+  window.__PHOTOS_PER_PAGE__ = 12;
+  window.__CURRENT_LOADED__ = Math.min(12, {{ photos.length }});
 </script>
 {% else %}
 <div class="gallery-empty">

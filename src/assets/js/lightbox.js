@@ -45,15 +45,15 @@
 
   function bindGalleryItems() {
     document.querySelectorAll(".gallery-item").forEach(function (btn) {
-      // Remove existing event listeners by cloning
-      var newBtn = btn.cloneNode(true);
-      btn.parentNode.replaceChild(newBtn, btn);
-      
-      newBtn.addEventListener("click", function () {
-        var index = parseInt(newBtn.dataset.index, 10);
-        triggerElement = newBtn;
-        open(index);
-      });
+      // Only add listener if not already added
+      if (!btn.hasAttribute('data-lightbox-bound')) {
+        btn.addEventListener("click", function () {
+          var index = parseInt(btn.dataset.index, 10);
+          triggerElement = btn;
+          open(index);
+        });
+        btn.setAttribute('data-lightbox-bound', 'true');
+      }
     });
   }
 
@@ -63,8 +63,8 @@
 
     loadMoreBtn.addEventListener("click", function () {
       var gallery = document.getElementById("gallery");
-      var currentCount = window.__CURRENT_LOADED__ || 8;
-      var photosPerPage = window.__PHOTOS_PER_PAGE__ || 8;
+      var currentCount = window.__CURRENT_LOADED__ || 12;
+      var photosPerPage = window.__PHOTOS_PER_PAGE__ || 12;
       var totalPhotos = photos.length;
       
       var nextBatch = photos.slice(currentCount, currentCount + photosPerPage);
