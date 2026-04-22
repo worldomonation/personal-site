@@ -183,12 +183,12 @@ body {
  *
  * Frame width options — swap the padding value to change the look:
  *   Option A · narrow : clamp( 8px, 2vmin, 16px)
- *   Option B · medium : clamp(12px, 3vmin, 24px)  ← current
- *   Option C · wide   : clamp(18px, 5vmin, 40px)
+ *   Option B · medium : clamp(12px, 3vmin, 24px)
+ *   Option C · wide   : clamp(18px, 5vmin, 40px)  ← current
  */
 .lightbox-frame {
   background: #fff;
-  padding: clamp(12px, 3vmin, 24px);
+  padding: clamp(18px, 5vmin, 40px);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
   line-height: 0;
   flex-shrink: 0;
