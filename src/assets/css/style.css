@@ -176,13 +176,29 @@ body {
   overflow-y: auto;
 }
 
+/* Film-print white frame around the lightbox image.
+ * Using a wrapper div instead of a border on <img> fixes clipping in
+ * iOS Safari (and other mobile browsers) when the image sits inside an
+ * overflow-y scroll container.
+ *
+ * Frame width options — swap the padding value to change the look:
+ *   Option A · narrow : clamp( 8px, 2vmin, 16px)
+ *   Option B · medium : clamp(12px, 3vmin, 24px)
+ *   Option C · wide   : clamp(18px, 5vmin, 40px)  ← current
+ */
+.lightbox-frame {
+  background: #fff;
+  padding: clamp(18px, 5vmin, 40px);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+  line-height: 0;
+  flex-shrink: 0;
+}
+
 .lightbox-image {
   max-height: 72vh;
   max-width: 90vw;
   object-fit: contain;
   display: block;
-  border: 3vmin solid #fff;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
 }
 
 .lightbox-nav {
@@ -305,9 +321,14 @@ body.lightbox-open {
     padding: 0 2px;
   }
 
+  .lightbox-frame {
+    /* leave a small breathing room so the frame shadow isn't clipped */
+    max-width: calc(100vw - 1rem);
+  }
+
   .lightbox-image {
     max-height: 55vh;
-    max-width: 100vw;
+    max-width: 100%;
   }
 
   .lightbox-content {

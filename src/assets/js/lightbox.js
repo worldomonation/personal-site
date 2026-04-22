@@ -18,7 +18,7 @@
     '<button class="lightbox-nav lightbox-prev" aria-label="Previous photo">\u2039</button>',
     '<button class="lightbox-nav lightbox-next" aria-label="Next photo">\u203a</button>',
     '<div class="lightbox-content">',
-    '  <img class="lightbox-image" src="" alt="">',
+    '  <div class="lightbox-frame"><img class="lightbox-image" src="" alt=""></div>',
     '  <div class="lightbox-exif"></div>',
     '  <div class="sr-only" role="status" aria-live="polite"></div>',
     "</div>",
