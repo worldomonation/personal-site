@@ -1,0 +1,44 @@
+---
+layout: base.njk
+title: Photos | Edwin Takahashi
+description: My photo gallery
+---
+
+{% if photos.length %}
+<section class="gallery" aria-label="Photo gallery" id="gallery">
+  {% for photo in photos.slice(0, 12) %}
+  <button class="gallery-item" data-index="{{ loop.index0 }}" aria-label="View {{ photo.alt }}">
+    <img src="{{ photo.thumbSrc }}" alt="{{ photo.alt }}" loading="lazy" decoding="async">
+  </button>
+  {% endfor %}
+</section>
+
+<div class="gallery-pagination">
+  {% if photos.length > 12 %}
+  <div class="load-more-container">
+    <button id="load-more-btn" class="btn">Load More Photos</button>
+  </div>
+  {% endif %}
+  
+  <div class="gallery-footer">
+    <a href="/" class="btn">← Back to Home</a>
+  </div>
+</div>
+
+<script>
+  window.__PHOTOS__ = {{ photos | toJson | safe }};
+  window.__PHOTOS_PER_PAGE__ = 12;
+  window.__CURRENT_LOADED__ = Math.min(12, {{ photos.length }});
+</script>
+{% else %}
+<div class="gallery-empty">
+  <h2>No photos yet</h2>
+  <p>Add images to <code>src/photos/</code> and rebuild.</p>
+</div>
+
+<div class="gallery-pagination">
+  <div class="gallery-footer">
+    <a href="/" class="btn">← Back to Home</a>
+  </div>
+</div>
+{% endif %}

@@ -1,23 +1,50 @@
 ---
 layout: base.njk
-title: Home | Edwin Takahashi
+title: Edwin Takahashi
+description: Welcome to my personal site
+hideHeader: true
 ---
 
-{% if photos.length %}
-<section class="gallery" aria-label="Photo gallery">
-  {% for photo in photos %}
-  <button class="gallery-item" data-index="{{ loop.index0 }}" aria-label="View {{ photo.alt }}">
-    <img src="{{ photo.thumbSrc }}" alt="{{ photo.alt }}" loading="lazy" decoding="async">
-  </button>
-  {% endfor %}
-</section>
+<div class="linktree-container">
+  <div class="profile-section">
+    <div class="profile-photo">
+      <!-- Profile image placeholder - add src when image is available -->
+    </div>
+    <h1 class="profile-name">Edwin Takahashi</h1>
+  </div>
 
-<script>
-  window.__PHOTOS__ = {{ photos | toJson | safe }};
-</script>
-{% else %}
-<div class="gallery-empty">
-  <h2>No photos yet</h2>
-  <p>Add images to <code>src/photos/</code> and rebuild.</p>
+  <div class="main-links">
+    <a href="/about" class="link-card main-link about-link">
+      <div class="link-pattern"></div>
+      <div class="link-content">
+        <h3>About</h3>
+        <p>Learn more about me</p>
+      </div>
+    </a>
+    <a href="/photos" class="link-card main-link photos-link">
+      {% if photos and photos.length > 0 %}
+        <div class="link-thumbnail" style="background-image: url('{{ photos[0].thumbSrc }}')"></div>
+      {% endif %}
+      <div class="link-content">
+        <h3>Photos</h3>
+        <p>View my gallery</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="external-links-section">
+    <div class="section-separator">
+      <span>External Links</span>
+    </div>
+    <div class="external-links">
+      <a href="https://github.com/worldomonation" target="_blank" rel="noopener noreferrer" class="link-card external-link">
+        <span>GitHub</span>
+        <span class="external-icon">↗</span>
+      </a>
+      <a href="https://www.linkedin.com/in/etakahashi/" target="_blank" rel="noopener noreferrer" class="link-card external-link">
+        <span>LinkedIn</span>
+        <span class="external-icon">↗</span>
+      </a>
+    </div>
+  </div>
 </div>
-{% endif %}
